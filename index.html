@@ -3,400 +3,206 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#02091b">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RALLY FOOTBALL</title>
 
 <style>
 *{box-sizing:border-box}
-:root{--blue:#00baff;--gold:#ffc52e;--navy:#02091b}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
 body{
- margin:0;background:#01040c;color:white;
- font-family:Arial,Helvetica,sans-serif;
+  background:#06121a;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
 }
-button{font:inherit;cursor:pointer;color:white}
-button:active{transform:scale(.97)}
-#app{
- width:100%;max-width:1000px;min-height:100svh;
- margin:auto;position:relative;overflow:hidden;
- background:radial-gradient(ellipse at 50% 40%,#124b9b 0%,#061a42 40%,#020817 78%);
+.game{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(1,8,16,.3),transparent 40%,#04120c 100%),
+    radial-gradient(ellipse at 50% 32%,#487a8a 0%,#183642 38%,#08151e 75%);
 }
-.stadium{
- position:absolute;inset:0 0 auto;height:65%;
- background:
- repeating-conic-gradient(from 270deg at 50% 0%,transparent 0deg,rgba(0,194,255,.12) 1deg,transparent 2deg,transparent 8deg),
- radial-gradient(ellipse at 50% 0%,#b6f4ff 0%,#1676ff 5%,transparent 40%),
- linear-gradient(180deg,#061331,#063b81 40%,#03112a 85%);
- opacity:.9;pointer-events:none;
+.lights{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 12% 17%,#fffbdc 0 2px,transparent 5px),
+    radial-gradient(ellipse at 23% 18%,#d8f5ff 0 2px,transparent 5px),
+    radial-gradient(ellipse at 77% 17%,#fffbdc 0 2px,transparent 5px),
+    radial-gradient(ellipse at 89% 18%,#d8f5ff 0 2px,transparent 5px),
+    linear-gradient(180deg,transparent 24%,#b2d9df18 25%,transparent 48%);
+  filter:drop-shadow(0 0 12px #a4e9ff);
 }
-.stadium:after{
- content:"";position:absolute;left:-20%;right:-20%;top:12%;height:48%;
- border-radius:50%;border-top:5px solid #7fe8ff;
- box-shadow:0 -8px 25px #008dff,0 -20px 50px #005dff;
+.pitch{
+  position:absolute;left:-30%;right:-30%;bottom:-25%;
+  height:59%;
+  transform:perspective(300px) rotateX(35deg);
+  transform-origin:top;
+  background:repeating-linear-gradient(
+    90deg,#123c27 0 13%,#1a5030 13% 26%
+  );
+  border-top:3px solid #b9d4b5;
 }
-header{
- position:relative;z-index:2;display:flex;align-items:center;
- gap:8px;padding:12px 12px 6px;
+.pitch:before{
+  content:"";position:absolute;inset:10% 20%;
+  border:2px solid #c5dfbd99;border-radius:50%;
 }
-.logo{
- font-weight:1000;font-style:italic;font-size:28px;letter-spacing:-2px;
- color:#00c5ff;text-shadow:0 0 15px #008dff;
+.pitch:after{
+  content:"";position:absolute;left:0;right:0;top:50%;
+  border-top:2px solid #c5dfbd99;
 }
-.brand{font-size:16px;font-weight:1000;font-style:italic;line-height:1}
-.brand small{display:block;font-size:9px;color:#49caff;letter-spacing:4px;margin-top:4px}
-.spacer{flex:1}
-.resource{
- background:linear-gradient(#123d72,#06152d);
- border:1px solid #267bcb;border-radius:8px;padding:7px 8px;
- font-size:11px;white-space:nowrap;font-weight:bold;
+.top{
+  position:absolute;top:24px;left:22px;right:22px;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.iconbtn{
- border:1px solid #24649e;background:#081c38;
- width:31px;height:31px;border-radius:9px;
+.logo{font-weight:1000;font-size:24px;font-style:italic;letter-spacing:2px}
+.logo span{color:#38aaff}
+.edition{
+  font-size:10px;letter-spacing:3px;color:#c9d8e2;
+  border:1px solid #ffffff40;padding:8px 10px;
+  background:#07111a66;
 }
-.main{position:relative;z-index:1;padding:5px 10px 0}
-.tagline{text-align:center;color:#7beaff;font-size:9px;letter-spacing:4px;font-weight:bold}
-.headline{text-align:center;font-size:clamp(25px,6vw,48px);font-weight:1000;font-style:italic;
- text-shadow:0 3px 0 #052d6e,0 0 22px #00aaff;line-height:1.05;margin:6px 0}
-.headline span{color:#00c8ff}
+.headline{
+  position:absolute;top:15%;left:0;width:100%;
+  text-align:center;text-shadow:0 4px 20px #000;
+}
+.headline small{letter-spacing:7px;color:#d2e5ef;font-size:10px}
+h1{
+  font-size:clamp(40px,11vw,76px);
+  line-height:.91;margin:13px 0;
+  font-weight:1000;font-style:italic;letter-spacing:-3px;
+}
+h1 span{
+  display:block;color:#e9bd62;
+  -webkit-text-stroke:1px #fff0bf;
+  text-shadow:0 0 30px #e9a63766;
+}
+.tag{font-size:10px;letter-spacing:4px;color:#e5e8e8}
 .hero{
- height:210px;position:relative;display:flex;justify-content:center;
- align-items:flex-end;margin-top:2px;overflow:hidden;
-}
-.hero:before{
- content:"";position:absolute;bottom:0;width:100%;height:70%;
- background:linear-gradient(0deg,#020b1b,transparent);
+  position:absolute;top:32%;left:0;width:100%;height:36%;
+  display:flex;justify-content:center;align-items:flex-end;
+  pointer-events:none;
 }
 .player{
- position:absolute;bottom:0;width:31%;height:88%;
- display:flex;flex-direction:column;align-items:center;
- filter:drop-shadow(0 0 12px #007dff);
+  position:absolute;bottom:0;
+  width:47%;height:95%;
+  border-radius:48% 48% 10% 10%;
+  filter:drop-shadow(0 12px 18px #0009);
 }
-.player .head{
- width:40px;height:46px;border-radius:45% 45% 40% 40%;
- background:linear-gradient(90deg,#874b2b,#d79a65 50%,#794026);
- border:2px solid #f4bd8b;position:relative;z-index:2;
+.player:before{
+  content:"";position:absolute;left:31%;top:0;
+  width:38%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f1c4a0,#9b6043 76%,#543629);
+  box-shadow:0 -8px 0 #231d19;
 }
-.player .hair{position:absolute;top:-4px;width:43px;height:15px;
- background:#202027;border-radius:60% 60% 20% 20%;z-index:3}
-.player .body{
- width:100%;height:115px;margin-top:-2px;
- clip-path:polygon(25% 0,75% 0,100% 22%,85% 100%,15% 100%,0 22%);
- background:linear-gradient(90deg,#8b111d,#ef273a 45%,#aa1022);
- border:1px solid white;position:relative;
+.player:after{
+  content:"";position:absolute;top:29%;left:3%;width:94%;height:72%;
+  clip-path:polygon(28% 0,72% 0,100% 25%,82% 100%,18% 100%,0 25%);
+  background:linear-gradient(110deg,#d6dce0,#647b90 46%,#152c47);
 }
-.player .body:after{
- content:"7";position:absolute;top:20px;left:0;right:0;
- text-align:center;font-size:44px;font-weight:1000;color:white;
- text-shadow:0 2px 5px #400;
+.player.left{left:4%;transform:rotate(-8deg) scale(.85);opacity:.9}
+.player.left:after{background:linear-gradient(110deg,#f6f5ed,#d61c35 48%,#760c23)}
+.player.right{right:4%;transform:rotate(8deg) scale(.85);opacity:.9}
+.player.right:after{background:linear-gradient(110deg,#18213b,#0870bd 50%,#15213b)}
+.player.center{z-index:2;width:48%;height:100%}
+.player.center:before{
+  background:radial-gradient(circle at 35% 30%,#edc19d,#b77951 75%,#6a3d2b);
 }
-.player .legs{display:flex;gap:14px;margin-top:-3px}
-.player .legs i{width:22px;height:49px;background:#e4e9f2;border-radius:3px}
-.p1{left:0;transform:scale(.7);transform-origin:bottom;opacity:.85}
-.p1 .body{background:linear-gradient(90deg,#0d703b,#f7d64b,#11733c)}
-.p1 .body:after{content:"10"}
-.p2{left:15%;transform:scale(.83);transform-origin:bottom}
-.p2 .body{background:linear-gradient(90deg,#c4e6ff,#fff,#8ecfff)}
-.p2 .body:after{content:"10"}
-.p3{left:35%;height:100%;width:31%;z-index:2}
-.p3 .head{width:49px;height:52px}
-.p3 .body{height:139px;background:linear-gradient(90deg,#b70c1e,#fa253b,#8c0718)}
-.p3 .body:after{content:"7";font-size:57px}
-.p4{right:15%;transform:scale(.84);transform-origin:bottom}
-.p4 .body{background:linear-gradient(90deg,#080d20,#182747,#050916)}
-.p4 .body:after{content:"10"}
-.p5{right:0;transform:scale(.72);transform-origin:bottom}
-.p5 .body{background:linear-gradient(90deg,#ffe44a,#087a42,#f5e34b)}
-.p5 .body:after{content:"9"}
-.hero-label{
- position:absolute;bottom:4px;left:0;right:0;text-align:center;z-index:4;
- font-weight:1000;font-style:italic;font-size:clamp(24px,6vw,39px);
- text-shadow:0 3px 5px #000;
+.player.center:after{
+  background:linear-gradient(100deg,#fff 0%,#dedfe4 35%,#1765bd 36%,#d9e9ff 70%,#164b91);
 }
-.hero-label span{color:#00caff}
-.sub{text-align:center;letter-spacing:5px;font-size:9px;font-weight:bold;color:#ffe38b;margin:4px 0 13px}
-.grid{
- display:grid;grid-template-columns:1fr 1fr 90px;gap:7px;
+.player:after{box-shadow:inset 0 0 25px #0005}
+.menu{
+  position:absolute;bottom:7%;left:0;right:0;
+  display:flex;align-items:center;flex-direction:column;gap:13px;
 }
-.panel{
- min-width:0;background:linear-gradient(135deg,rgba(12,52,101,.96),rgba(2,12,32,.98));
- border:1px solid #237fbd;border-radius:9px;padding:9px;
- box-shadow:inset 0 0 13px #0061aa24;
-}
-.panel h3{font-size:12px;margin:0 0 4px;color:#fff}
-.panel p{font-size:9px;margin:0;color:#9edcff}
-.panel .symbol{font-size:23px;margin-bottom:5px}
-.ad{
- grid-column:3;grid-row:1 / span 2;
- display:flex;flex-direction:column;justify-content:space-between;
- background:linear-gradient(160deg,#061c3c,#00101f);
-}
-.ad .adtag{font-size:9px;color:#00caff;font-weight:bold}
-.ad .shoe{font-size:36px;text-align:center;margin:13px 0}
-.ad button{background:#102e52;border:1px solid #3393dc;border-radius:5px;padding:7px 2px;font-size:9px}
-.wide{grid-column:1 / 3}
-.jerseys{display:flex;justify-content:space-around;gap:5px;margin-top:9px}
-.shirt{font-size:25px;filter:drop-shadow(0 0 4px #1a9fff)}
-.playarea{margin:12px 0 9px;display:flex;justify-content:center}
 .play{
- width:min(80%,360px);padding:13px 10px;border-radius:50px;
- border:2px solid #fff0a0;color:#271400;
- font-size:clamp(24px,6vw,37px);font-weight:1000;font-style:italic;
- background:linear-gradient(180deg,#fff29b 0%,#ffcf32 35%,#f7a800 65%,#b97000 100%);
- box-shadow:0 0 0 3px #8d5b08,0 0 22px #ffb70088,inset 0 3px 5px #fff8c9;
- text-shadow:0 1px 0 #ffeaa1;
+  width:min(76%,330px);height:62px;
+  border:1px solid #fff0ac;
+  background:linear-gradient(180deg,#fff0a7 0%,#e9bd55 30%,#a96c19 100%);
+  color:#211606;font-size:19px;font-weight:1000;
+  font-style:italic;letter-spacing:4px;
+  clip-path:polygon(7% 0,93% 0,100% 50%,93% 100%,7% 100%,0 50%);
+  filter:drop-shadow(0 0 15px #e5ae4380);
+  cursor:pointer;
 }
-.play span{font-size:24px}
-.reward{
- display:flex;align-items:center;gap:9px;padding:8px 10px;
- background:linear-gradient(90deg,#102b50,#061329);
- border:1px solid #198cdd;border-radius:8px;margin-bottom:12px;
+.play:active{transform:scale(.96)}
+.sub{font-size:9px;letter-spacing:3px;color:#c7d2d8}
+.footer{
+  position:absolute;bottom:17px;left:0;right:0;
+  text-align:center;font-size:9px;color:#91a4ae;
+  letter-spacing:2px;
 }
-.reward .coins{font-size:23px}
-.reward strong{font-size:11px;color:#ffda43;display:block}
-.reward small{font-size:9px;color:#9ddaff}
-.reward button{margin-left:auto;background:#0873ba;border:1px solid #4ad4ff;
- border-radius:6px;padding:8px;font-size:10px;font-weight:bold}
-nav{
- display:flex;justify-content:space-around;position:relative;
- border-top:1px solid #1b6aaf;background:#020a18;
- padding:9px 2px 12px;
+.overlay{
+  position:absolute;inset:0;background:#030910f2;
+  z-index:10;display:none;align-items:center;
+  justify-content:center;text-align:center;padding:25px;
 }
-nav button{border:0;background:transparent;min-width:0;flex:1;font-size:9px;color:#a6c6e9}
-nav button b{display:block;font-size:19px;margin-bottom:3px}
-nav button.active{color:#00c8ff;text-shadow:0 0 10px #00aaff}
-footer{text-align:center;font-size:8px;color:#537ca5;padding:5px}
-#screen{display:none;position:absolute;inset:0;z-index:10;
- background:radial-gradient(ellipse at top,#12519b,#020817 72%);
- padding:18px;overflow:auto}
-.back{background:#103765;border:1px solid #168ed5;border-radius:8px;padding:10px 16px}
-.screenTitle{font-size:28px;font-weight:1000;font-style:italic;color:#48d5ff;margin:25px 0}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.option{background:#081d3c;border:1px solid #167dc4;border-radius:12px;
- padding:20px 10px;text-align:center;font-weight:bold}
-.option span{display:block;font-size:34px;margin-bottom:10px}
-.option.selected{border:2px solid #ffc52e;background:#12375a}
-.confirm{width:100%;margin-top:20px;padding:15px;border:0;border-radius:9px;
- background:linear-gradient(#ffe78a,#ffb600);color:#291700;font-weight:1000}
-.pitch{
- margin-top:15px;height:270px;position:relative;overflow:hidden;
- border:3px solid white;border-radius:4px;
- background:repeating-linear-gradient(0deg,#177d42 0,#177d42 38px,#20944e 38px,#20944e 76px);
+.overlay.show{display:flex}
+.panel{max-width:360px}
+.panel h2{font-size:32px;font-style:italic}
+.panel p{color:#b9c6ce;line-height:1.6;font-size:14px}
+.back{
+  background:transparent;border:1px solid #e9bd62;
+  color:#e9bd62;padding:14px 25px;font-weight:bold;
 }
-.pitch:before{content:"";position:absolute;inset:0 20%;border:2px solid #b6ffc7}
-.pitch:after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid #b6ffc7}
-.circle{position:absolute;left:50%;top:50%;width:65px;height:65px;border:2px solid #b6ffc7;border-radius:50%;transform:translate(-50%,-50%)}
-.matchPlayers{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;flex-direction:column}
-.rowPlayers{display:flex;justify-content:space-around;width:100%;font-size:25px;z-index:1}
-.ball{position:absolute;left:50%;top:53%;font-size:25px;z-index:2;transition:all .3s}
-.matchControls{display:flex;gap:10px;margin-top:16px}
-.matchControls button{flex:1;padding:15px 5px;background:#08386b;border:1px solid #35b9ff;border-radius:10px;font-weight:bold}
 @media(min-width:650px){
- .main{padding:10px 22px}
- .hero{height:290px}
- .player .body{height:145px}
- .p3 .body{height:180px}
- .panel{padding:13px}
- .panel h3{font-size:15px}
- .panel p{font-size:11px}
+ .hero{height:43%;top:27%}
+ .player{max-width:300px}
+ .player.center{max-width:340px}
+ .headline{top:12%}
+ .menu{bottom:5%}
 }
 </style>
 </head>
 
 <body>
-<div id="app">
-<div class="stadium"></div>
+<main class="game">
+  <div class="lights"></div>
+  <div class="pitch"></div>
 
-<header>
- <div class="logo">R</div>
- <div class="brand">RALLY<small>FOOTBALL</small></div>
- <div class="spacer"></div>
- <div class="resource">⚡ 10/12 <span>＋</span></div>
- <div class="resource">🪙 <span id="coins">140 000</span></div>
- <div class="resource">⭐ 3</div>
- <button class="iconbtn" onclick="openScreen('Inbox','✉️','Your messages')">✉️</button>
- <button class="iconbtn" onclick="openScreen('Settings','⚙️','Game settings')">⚙️</button>
-</header>
+  <header class="top">
+    <div class="logo"><span>R</span>ALLY</div>
+    <div class="edition">FOOTBALL • 2027</div>
+  </header>
 
-<main class="main" id="home">
- <div class="tagline">THE NEXT GENERATION OF FOOTBALL</div>
- <div class="headline">RALLY <span>FOOTBALL</span></div>
+  <section class="headline">
+    <small>THE WORLD IS YOUR STADIUM</small>
+    <h1>RALLY <span>FOOTBALL</span></h1>
+    <div class="tag">BUILD YOUR LEGACY</div>
+  </section>
 
- <div class="hero">
-  <div class="player p1"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
-  <div class="player p2"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
-  <div class="player p3"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
-  <div class="player p4"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
-  <div class="player p5"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
-  <div class="hero-label">RALLY <span>FOOTBALL</span></div>
- </div>
- <div class="sub">DREAM • PLAY • WIN</div>
+  <section class="hero" aria-label="Stylized football players">
+    <div class="player left"></div>
+    <div class="player right"></div>
+    <div class="player center"></div>
+  </section>
 
- <div class="grid">
-  <button class="panel" onclick="openScreen('Divisions','🛡️','Climb the ranks and become a champion.')">
-   <div class="symbol">🛡️</div><h3>DIVISIONS ›</h3><p>Climb the ranks</p>
-  </button>
-  <button class="panel" onclick="openScreen('Career','🏆','Build your football legacy.')">
-   <div class="symbol">🏆</div><h3>CAREER ›</h3><p>Build your legend</p>
-  </button>
-  <div class="panel ad">
-   <div class="adtag">AD</div>
-   <div class="shoe">👟</div>
-   <div><h3>FOOTBALL</h3><p>Gear up to play</p></div>
-   <button onclick="openScreen('Shop','👟','Explore the gear shop.')">SHOP NOW ›</button>
-  </div>
+  <section class="menu">
+    <button class="play" onclick="startGame()">▶ PLAY</button>
+    <div class="sub">YOUR CLUB. YOUR GLORY.</div>
+  </section>
 
-  <button class="panel" onclick="openScreen('Daily Quest','☑️','Complete challenges to earn rewards.')">
-   <div class="symbol">☑️</div><h3>DAILY QUEST ›</h3><p>Complete tasks</p>
-  </button>
-  <button class="panel" onclick="openScreen('Team','🛡️','Choose your national team.')">
-   <div class="symbol">🇵🇹</div><h3>TEAM ›</h3><p id="teamLabel">Portugal selected</p>
-  </button>
+  <footer class="footer">RALLY STUDIOS · MOBILE FOOTBALL</footer>
 
-  <button class="panel wide" onclick="openScreen('Jersey Shop','👕','Choose your team kit.')">
-   <h3>JERSEY SHOP ›</h3><p>New kits and designs</p>
-   <div class="jerseys"><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span></div>
-  </button>
- </div>
-
- <div class="playarea">
-  <button class="play" onclick="openScreen('Select Match','⚽','Choose your team and start your first match.')">⚽ PLAY <span>›</span></button>
- </div>
-
- <div class="reward">
-  <div class="coins">🪙</div>
-  <div><strong>WATCH AD • GET 20 COINS</strong><small>Optional reward • Watch only if you choose</small></div>
-  <button onclick="watchAd()">▶ WATCH AD</button>
- </div>
+  <section class="overlay" id="next">
+    <div class="panel">
+      <div class="logo"><span>R</span>ALLY</div>
+      <h2>YOUR CAREER STARTS NOW</h2>
+      <p>This is the first playable menu prototype. The next stage is building the team-selection screen and actual football gameplay.</p>
+      <button class="back" onclick="goBack()">← BACK TO MENU</button>
+    </div>
+  </section>
 </main>
 
-<nav id="nav">
- <button class="active" onclick="goHome(this)"><b>⌂</b>HOME</button>
- <button onclick="openScreen('Players','👤','Build your squad.')"><b>👤</b>PLAYERS</button>
- <button onclick="openScreen('Jersey Shop','👕','Choose your kit.')"><b>👕</b>JERSEYS</button>
- <button onclick="openScreen('Store','🛒','Your game store.')"><b>🛒</b>STORE</button>
- <button onclick="openScreen('Tournaments','🏆','Compete for the trophy.')"><b>🏆</b>TOURNAMENTS</button>
-</nav>
-<footer>RALLY FOOTBALL • MORE THAN A GAME</footer>
-
-<section id="screen">
- <button class="back" onclick="goHome()">← BACK</button>
- <div class="screenTitle" id="screenTitle">RALLY FOOTBALL</div>
- <div id="screenBody"></div>
-</section>
-</div>
-
 <script>
-const screen=document.getElementById('screen');
-const body=document.getElementById('screenBody');
-let team='Portugal';
-let coins=140000;
-let selected='Portugal';
-let matchStarted=false;
-
-function openScreen(title,emoji,description){
- document.getElementById('screenTitle').textContent=emoji+' '+title.toUpperCase();
- if(title==='Team'||title==='Select Match'){
-  body.innerHTML=`
-   <p>CHOOSE YOUR NATIONAL TEAM</p>
-   <div class="options">
-    ${[['🇵🇹','Portugal'],['🇧🇷','Brazil'],['🇫🇷','France'],['🇦🇷','Argentina'],['🏴','England'],['🇩🇪','Germany']].map(t=>`
-    <button class="option ${selected===t[1]?'selected':''}" onclick="chooseTeam('${t[1]}',this)">
-    <span>${t[0]}</span>${t[1]}</button>`).join('')}
-   </div>
-   <button class="confirm" onclick="startMatch()">⚽ START MATCH</button>`;
- }else if(title==='Players'){
-  body.innerHTML=`<p>${description}</p><div class="options">
-  <div class="option"><span>🥅</span>GOALKEEPER</div>
-  <div class="option"><span>🛡️</span>DEFENDERS</div>
-  <div class="option"><span>⚡</span>MIDFIELDERS</div>
-  <div class="option"><span>🎯</span>FORWARDS</div></div>`;
- }else if(title==='Settings'){
-  body.innerHTML=`<div class="option"><span>🔊</span>Sound effects<br><br><button class="back" onclick="this.textContent=this.textContent==='ON'?'OFF':'ON'">ON</button></div>
-  <p>RALLY FOOTBALL DEMO</p>`;
- }else if(title==='Store'||title==='Shop'||title==='Jersey Shop'){
-  body.innerHTML=`<p>${description}</p><div class="options">
-  <div class="option"><span>👕</span>Home Kit<br>🪙 500</div>
-  <div class="option"><span>👟</span>Boots<br>🪙 800</div>
-  <div class="option"><span>🧤</span>Goalkeeper Kit<br>🪙 600</div>
-  <div class="option"><span>⭐</span>Star Pack<br>🪙 1000</div></div>
-  <p>Shop items are demo items in this version.</p>`;
- }else{
-  body.innerHTML=`<div class="option"><span>${emoji}</span>${description}<br><br><small>COMING SOON</small></div>
-  <button class="confirm" onclick="openScreen('Select Match','⚽','Choose your team')">PLAY A MATCH</button>`;
- }
- document.getElementById('home').style.display='none';
- document.getElementById('nav').style.display='none';
- document.querySelector('footer').style.display='none';
- screen.style.display='block';
+function startGame(){
+  document.getElementById("next").classList.add("show");
 }
-
-function chooseTeam(name,button){
- selected=name;
- document.querySelectorAll('.option').forEach(el=>el.classList.remove('selected'));
- button.classList.add('selected');
-}
-function goHome(button){
- screen.style.display='none';
- document.getElementById('home').style.display='block';
- document.getElementById('nav').style.display='flex';
- document.querySelector('footer').style.display='block';
- if(button){
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  button.classList.add('active');
- }
-}
-function startMatch(){
- team=selected;
- document.getElementById('teamLabel').textContent=team+' selected';
- document.getElementById('screenTitle').textContent='⚽ '+team.toUpperCase()+' MATCH';
- body.innerHTML=`
- <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:13px">
- <span>${team}</span><span id="score">0 - 0</span><span>RIVAL FC</span></div>
- <div style="text-align:center;margin:15px">DEMO MATCH • <span id="minute">0</span>'</div>
- <div class="pitch">
-  <div class="circle"></div>
-  <div class="matchPlayers">
-   <div class="rowPlayers"><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span></div>
-   <div class="rowPlayers"><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span></div>
-  </div>
-  <div class="ball" id="ball">⚽</div>
- </div>
- <p style="text-align:center">DEMO CONTROLS — tap to play</p>
- <div class="matchControls">
-  <button onclick="kick('PASS')">PASS</button>
-  <button onclick="kick('SHOOT')">SHOOT ⚽</button>
-  <button onclick="kick('SPRINT')">SPRINT</button>
- </div>
- <button class="confirm" onclick="goHome()">QUIT MATCH</button>`;
- matchStarted=true;
-}
-function kick(action){
- let ball=document.getElementById('ball');
- let minute=document.getElementById('minute');
- let score=document.getElementById('score');
- if(!ball||!minute)return;
- minute.textContent=Math.min(90,Number(minute.textContent)+5);
- ball.style.left=(15+Math.random()*70)+'%';
- ball.style.top=(15+Math.random()*70)+'%';
- if(action==='SHOOT'&&Math.random()>.55){
-  let values=score.textContent.split(' - ').map(Number);
-  values[0]++;
-  score.textContent=values.join(' - ');
-  alert('GOAL! ⚽ Nice shot!');
- }else if(action==='SHOOT'){
-  alert('Shot saved! Try again, bro! 🧤');
- }else if(action==='PASS'){
-  alert('Pass completed! Keep moving!');
- }else{
-  alert('Sprint! Run into space! ⚡');
- }
- if(Number(minute.textContent)>=90)alert('Full time! This is an early gameplay demo.');
-}
-function watchAd(){
- alert('Optional ad reward preview. A real ad network is not connected yet, so no ad will play and no coins will be added.');
+function goBack(){
+  document.getElementById("next").classList.remove("show");
 }
 </script>
 </body>
-  </html>
-  
+ </html>
+ 
