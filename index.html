@@ -3,481 +3,400 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#02091b">
 <title>RALLY FOOTBALL</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box}
+:root{--blue:#00baff;--gold:#ffc52e;--navy:#02091b}
+body{
+ margin:0;background:#01040c;color:white;
+ font-family:Arial,Helvetica,sans-serif;
 }
-
-body {
-  font-family: Arial, sans-serif;
-  background: #07130c;
-  color: white;
+button{font:inherit;cursor:pointer;color:white}
+button:active{transform:scale(.97)}
+#app{
+ width:100%;max-width:1000px;min-height:100svh;
+ margin:auto;position:relative;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 40%,#124b9b 0%,#061a42 40%,#020817 78%);
 }
-
-#home {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: radial-gradient(circle at center, #176b35, #07130c 75%);
+.stadium{
+ position:absolute;inset:0 0 auto;height:65%;
+ background:
+ repeating-conic-gradient(from 270deg at 50% 0%,transparent 0deg,rgba(0,194,255,.12) 1deg,transparent 2deg,transparent 8deg),
+ radial-gradient(ellipse at 50% 0%,#b6f4ff 0%,#1676ff 5%,transparent 40%),
+ linear-gradient(180deg,#061331,#063b81 40%,#03112a 85%);
+ opacity:.9;pointer-events:none;
 }
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #ffffff25;
+.stadium:after{
+ content:"";position:absolute;left:-20%;right:-20%;top:12%;height:48%;
+ border-radius:50%;border-top:5px solid #7fe8ff;
+ box-shadow:0 -8px 25px #008dff,0 -20px 50px #005dff;
 }
-
-.logo {
-  font-size: 23px;
-  font-weight: 900;
+header{
+ position:relative;z-index:2;display:flex;align-items:center;
+ gap:8px;padding:12px 12px 6px;
 }
-
-.logo span {
-  color: #b8ff43;
+.logo{
+ font-weight:1000;font-style:italic;font-size:28px;letter-spacing:-2px;
+ color:#00c5ff;text-shadow:0 0 15px #008dff;
 }
-
-.version {
-  font-size: 11px;
-  color: #c6d5c9;
+.brand{font-size:16px;font-weight:1000;font-style:italic;line-height:1}
+.brand small{display:block;font-size:9px;color:#49caff;letter-spacing:4px;margin-top:4px}
+.spacer{flex:1}
+.resource{
+ background:linear-gradient(#123d72,#06152d);
+ border:1px solid #267bcb;border-radius:8px;padding:7px 8px;
+ font-size:11px;white-space:nowrap;font-weight:bold;
 }
-
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 30px 18px;
+.iconbtn{
+ border:1px solid #24649e;background:#081c38;
+ width:31px;height:31px;border-radius:9px;
 }
-
-.tag {
-  color: #b8ff43;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 4px;
-  margin-bottom: 20px;
+.main{position:relative;z-index:1;padding:5px 10px 0}
+.tagline{text-align:center;color:#7beaff;font-size:9px;letter-spacing:4px;font-weight:bold}
+.headline{text-align:center;font-size:clamp(25px,6vw,48px);font-weight:1000;font-style:italic;
+ text-shadow:0 3px 0 #052d6e,0 0 22px #00aaff;line-height:1.05;margin:6px 0}
+.headline span{color:#00c8ff}
+.hero{
+ height:210px;position:relative;display:flex;justify-content:center;
+ align-items:flex-end;margin-top:2px;overflow:hidden;
 }
-
-h1 {
-  font-size: clamp(43px, 11vw, 75px);
-  line-height: 0.95;
-  font-weight: 1000;
-  font-style: italic;
+.hero:before{
+ content:"";position:absolute;bottom:0;width:100%;height:70%;
+ background:linear-gradient(0deg,#020b1b,transparent);
 }
-
-h1 span {
-  color: #b8ff43;
+.player{
+ position:absolute;bottom:0;width:31%;height:88%;
+ display:flex;flex-direction:column;align-items:center;
+ filter:drop-shadow(0 0 12px #007dff);
 }
-
-.description {
-  max-width: 300px;
-  margin: 22px 0;
-  color: #d6e5d9;
-  font-size: 14px;
-  line-height: 1.6;
+.player .head{
+ width:40px;height:46px;border-radius:45% 45% 40% 40%;
+ background:linear-gradient(90deg,#874b2b,#d79a65 50%,#794026);
+ border:2px solid #f4bd8b;position:relative;z-index:2;
 }
-
-.pitch {
-  width: min(320px, 90%);
-  height: 125px;
-  position: relative;
-  margin: 5px 0 30px;
-  border: 2px solid #d7ffcb;
-  background: repeating-linear-gradient(
-    90deg,
-    #18733a 0px,
-    #18733a 40px,
-    #208342 40px,
-    #208342 80px
-  );
+.player .hair{position:absolute;top:-4px;width:43px;height:15px;
+ background:#202027;border-radius:60% 60% 20% 20%;z-index:3}
+.player .body{
+ width:100%;height:115px;margin-top:-2px;
+ clip-path:polygon(25% 0,75% 0,100% 22%,85% 100%,15% 100%,0 22%);
+ background:linear-gradient(90deg,#8b111d,#ef273a 45%,#aa1022);
+ border:1px solid white;position:relative;
 }
-
-.pitch::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  border-left: 2px solid white;
+.player .body:after{
+ content:"7";position:absolute;top:20px;left:0;right:0;
+ text-align:center;font-size:44px;font-weight:1000;color:white;
+ text-shadow:0 2px 5px #400;
 }
-
-.circle {
-  position: absolute;
-  width: 55px;
-  height: 55px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid white;
-  border-radius: 50%;
+.player .legs{display:flex;gap:14px;margin-top:-3px}
+.player .legs i{width:22px;height:49px;background:#e4e9f2;border-radius:3px}
+.p1{left:0;transform:scale(.7);transform-origin:bottom;opacity:.85}
+.p1 .body{background:linear-gradient(90deg,#0d703b,#f7d64b,#11733c)}
+.p1 .body:after{content:"10"}
+.p2{left:15%;transform:scale(.83);transform-origin:bottom}
+.p2 .body{background:linear-gradient(90deg,#c4e6ff,#fff,#8ecfff)}
+.p2 .body:after{content:"10"}
+.p3{left:35%;height:100%;width:31%;z-index:2}
+.p3 .head{width:49px;height:52px}
+.p3 .body{height:139px;background:linear-gradient(90deg,#b70c1e,#fa253b,#8c0718)}
+.p3 .body:after{content:"7";font-size:57px}
+.p4{right:15%;transform:scale(.84);transform-origin:bottom}
+.p4 .body{background:linear-gradient(90deg,#080d20,#182747,#050916)}
+.p4 .body:after{content:"10"}
+.p5{right:0;transform:scale(.72);transform-origin:bottom}
+.p5 .body{background:linear-gradient(90deg,#ffe44a,#087a42,#f5e34b)}
+.p5 .body:after{content:"9"}
+.hero-label{
+ position:absolute;bottom:4px;left:0;right:0;text-align:center;z-index:4;
+ font-weight:1000;font-style:italic;font-size:clamp(24px,6vw,39px);
+ text-shadow:0 3px 5px #000;
 }
-
-button {
-  width: min(300px, 90%);
-  padding: 17px;
-  border: none;
-  border-radius: 7px;
-  background: #b8ff43;
-  color: #102008;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 2px;
+.hero-label span{color:#00caff}
+.sub{text-align:center;letter-spacing:5px;font-size:9px;font-weight:bold;color:#ffe38b;margin:4px 0 13px}
+.grid{
+ display:grid;grid-template-columns:1fr 1fr 90px;gap:7px;
 }
-
-footer {
-  padding: 20px;
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #9bb7a2;
+.panel{
+ min-width:0;background:linear-gradient(135deg,rgba(12,52,101,.96),rgba(2,12,32,.98));
+ border:1px solid #237fbd;border-radius:9px;padding:9px;
+ box-shadow:inset 0 0 13px #0061aa24;
+}
+.panel h3{font-size:12px;margin:0 0 4px;color:#fff}
+.panel p{font-size:9px;margin:0;color:#9edcff}
+.panel .symbol{font-size:23px;margin-bottom:5px}
+.ad{
+ grid-column:3;grid-row:1 / span 2;
+ display:flex;flex-direction:column;justify-content:space-between;
+ background:linear-gradient(160deg,#061c3c,#00101f);
+}
+.ad .adtag{font-size:9px;color:#00caff;font-weight:bold}
+.ad .shoe{font-size:36px;text-align:center;margin:13px 0}
+.ad button{background:#102e52;border:1px solid #3393dc;border-radius:5px;padding:7px 2px;font-size:9px}
+.wide{grid-column:1 / 3}
+.jerseys{display:flex;justify-content:space-around;gap:5px;margin-top:9px}
+.shirt{font-size:25px;filter:drop-shadow(0 0 4px #1a9fff)}
+.playarea{margin:12px 0 9px;display:flex;justify-content:center}
+.play{
+ width:min(80%,360px);padding:13px 10px;border-radius:50px;
+ border:2px solid #fff0a0;color:#271400;
+ font-size:clamp(24px,6vw,37px);font-weight:1000;font-style:italic;
+ background:linear-gradient(180deg,#fff29b 0%,#ffcf32 35%,#f7a800 65%,#b97000 100%);
+ box-shadow:0 0 0 3px #8d5b08,0 0 22px #ffb70088,inset 0 3px 5px #fff8c9;
+ text-shadow:0 1px 0 #ffeaa1;
+}
+.play span{font-size:24px}
+.reward{
+ display:flex;align-items:center;gap:9px;padding:8px 10px;
+ background:linear-gradient(90deg,#102b50,#061329);
+ border:1px solid #198cdd;border-radius:8px;margin-bottom:12px;
+}
+.reward .coins{font-size:23px}
+.reward strong{font-size:11px;color:#ffda43;display:block}
+.reward small{font-size:9px;color:#9ddaff}
+.reward button{margin-left:auto;background:#0873ba;border:1px solid #4ad4ff;
+ border-radius:6px;padding:8px;font-size:10px;font-weight:bold}
+nav{
+ display:flex;justify-content:space-around;position:relative;
+ border-top:1px solid #1b6aaf;background:#020a18;
+ padding:9px 2px 12px;
+}
+nav button{border:0;background:transparent;min-width:0;flex:1;font-size:9px;color:#a6c6e9}
+nav button b{display:block;font-size:19px;margin-bottom:3px}
+nav button.active{color:#00c8ff;text-shadow:0 0 10px #00aaff}
+footer{text-align:center;font-size:8px;color:#537ca5;padding:5px}
+#screen{display:none;position:absolute;inset:0;z-index:10;
+ background:radial-gradient(ellipse at top,#12519b,#020817 72%);
+ padding:18px;overflow:auto}
+.back{background:#103765;border:1px solid #168ed5;border-radius:8px;padding:10px 16px}
+.screenTitle{font-size:28px;font-weight:1000;font-style:italic;color:#48d5ff;margin:25px 0}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{background:#081d3c;border:1px solid #167dc4;border-radius:12px;
+ padding:20px 10px;text-align:center;font-weight:bold}
+.option span{display:block;font-size:34px;margin-bottom:10px}
+.option.selected{border:2px solid #ffc52e;background:#12375a}
+.confirm{width:100%;margin-top:20px;padding:15px;border:0;border-radius:9px;
+ background:linear-gradient(#ffe78a,#ffb600);color:#291700;font-weight:1000}
+.pitch{
+ margin-top:15px;height:270px;position:relative;overflow:hidden;
+ border:3px solid white;border-radius:4px;
+ background:repeating-linear-gradient(0deg,#177d42 0,#177d42 38px,#20944e 38px,#20944e 76px);
+}
+.pitch:before{content:"";position:absolute;inset:0 20%;border:2px solid #b6ffc7}
+.pitch:after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px solid #b6ffc7}
+.circle{position:absolute;left:50%;top:50%;width:65px;height:65px;border:2px solid #b6ffc7;border-radius:50%;transform:translate(-50%,-50%)}
+.matchPlayers{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;flex-direction:column}
+.rowPlayers{display:flex;justify-content:space-around;width:100%;font-size:25px;z-index:1}
+.ball{position:absolute;left:50%;top:53%;font-size:25px;z-index:2;transition:all .3s}
+.matchControls{display:flex;gap:10px;margin-top:16px}
+.matchControls button{flex:1;padding:15px 5px;background:#08386b;border:1px solid #35b9ff;border-radius:10px;font-weight:bold}
+@media(min-width:650px){
+ .main{padding:10px 22px}
+ .hero{height:290px}
+ .player .body{height:145px}
+ .p3 .body{height:180px}
+ .panel{padding:13px}
+ .panel h3{font-size:15px}
+ .panel p{font-size:11px}
 }
 </style>
 </head>
 
 <body>
+<div id="app">
+<div class="stadium"></div>
 
-<div id="home">
+<header>
+ <div class="logo">R</div>
+ <div class="brand">RALLY<small>FOOTBALL</small></div>
+ <div class="spacer"></div>
+ <div class="resource">⚡ 10/12 <span>＋</span></div>
+ <div class="resource">🪙 <span id="coins">140 000</span></div>
+ <div class="resource">⭐ 3</div>
+ <button class="iconbtn" onclick="openScreen('Inbox','✉️','Your messages')">✉️</button>
+ <button class="iconbtn" onclick="openScreen('Settings','⚙️','Game settings')">⚙️</button>
+</header>
 
-  <header>
-    <div class="logo">RALLY<span>FC</span></div>
-    <div class="version">FOOTBALL 2026</div>
-  </header>
+<main class="main" id="home">
+ <div class="tagline">THE NEXT GENERATION OF FOOTBALL</div>
+ <div class="headline">RALLY <span>FOOTBALL</span></div>
 
-  <main>
-    <div class="tag">YOUR CLUB. YOUR LEGACY.</div>
+ <div class="hero">
+  <div class="player p1"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
+  <div class="player p2"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
+  <div class="player p3"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
+  <div class="player p4"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
+  <div class="player p5"><div class="head"><i class="hair"></i></div><div class="body"></div><div class="legs"><i></i><i></i></div></div>
+  <div class="hero-label">RALLY <span>FOOTBALL</span></div>
+ </div>
+ <div class="sub">DREAM • PLAY • WIN</div>
 
-    <h1>RALLY<br><span>FOOTBALL</span></h1>
-
-    <p class="description">
-      Build your team. Take the pitch.
-      Fight for glory and become a football legend.
-    </p>
-
-    <div class="pitch">
-      <div class="circle"></div>
-    </div>
-
-    <button onclick="startGame()">KICK OFF ⚽</button>
-  </main>
-
-  <footer>ONE DREAM · ONE TEAM · ONE CHAMPION</footer>
-
-</div>
-
-
-
-<style>
-#clubScreen {
-  display: none;
-  min-height: 100vh;
-  padding: 22px;
-  background: radial-gradient(circle at top, #185b32, #07130c 70%);
-}
-
-.screenTitle {
-  font-size: 30px;
-  font-weight: 900;
-  margin: 30px 0 10px;
-}
-
-.screenText {
-  color: #c4d7c9;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-
-.clubCard {
-  padding: 25px 15px;
-  margin: 20px 0;
-  text-align: center;
-  background: #ffffff0b;
-  border: 1px solid #ffffff25;
-  border-radius: 12px;
-}
-
-.clubBadge {
-  font-size: 65px;
-  margin-bottom: 12px;
-}
-
-.clubName {
-  color: #b8ff43;
-  font-size: 24px;
-  font-weight: 900;
-}
-
-.menuButton {
-  width: 100%;
-  margin: 8px 0;
-  padding: 16px;
-  border-radius: 7px;
-  background: #b8ff43;
-  color: #102008;
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.secondaryButton {
-  background: #ffffff12;
-  color: white;
-  border: 1px solid #ffffff40;
-}
-
-#matchScreen {
-  display: none;
-  min-height: 100vh;
-  padding: 20px;
-  background: #07130c;
-}
-
-.matchHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 10px;
-  background: #ffffff0d;
-  border-radius: 10px;
-}
-
-.score {
-  color: #b8ff43;
-  font-size: 25px;
-  font-weight: 900;
-}
-
-.matchPitch {
-  height: 380px;
-  max-width: 600px;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid #d8f3d6;
-  border-radius: 4px;
-  background: repeating-linear-gradient(
-    0deg,
-    #167237 0px,
-    #167237 45px,
-    #1d8140 45px,
-    #1d8140 90px
-  );
-}
-
-.matchPitch::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  border-top: 2px solid #ffffffb0;
-}
-
-.matchPitch::after {
-  content: "";
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  border: 2px solid #ffffffb0;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.player {
-  position: absolute;
-  z-index: 2;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid white;
-  border-radius: 50%;
-  background: #287cff;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.player.opponent {
-  background: #ed3947;
-}
-
-#ball {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: 50%;
-  width: 16px;
-  height: 16px;
-  transform: translate(-50%, -50%);
-  background: white;
-  border: 2px solid #111;
-  border-radius: 50%;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 15px auto;
-}
-
-.controlButton {
-  width: 85px;
-  height: 55px;
-  border-radius: 10px;
-  background: #ffffff18;
-  border: 1px solid #ffffff40;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.shootButton {
-  background: #b8ff43;
-  color: #102008;
-  font-size: 12px;
-}
-
-.smallNote {
-  text-align: center;
-  color: #c4d7c9;
-  font-size: 12px;
-  margin: 12px 0;
-}
-</style>
-
-<div id="clubScreen">
-  <div class="logo">RALLY<span>FC</span></div>
-
-  <h2 class="screenTitle">BUILD YOUR LEGACY</h2>
-  <p class="screenText">
-    Welcome, manager. Choose your club and prepare for your first match.
-  </p>
-
-  <div class="clubCard">
-    <div class="clubBadge">🏆</div>
-    <div class="clubName">RALLY UNITED</div>
-    <p class="screenText">Your journey to football greatness starts here.</p>
+ <div class="grid">
+  <button class="panel" onclick="openScreen('Divisions','🛡️','Climb the ranks and become a champion.')">
+   <div class="symbol">🛡️</div><h3>DIVISIONS ›</h3><p>Climb the ranks</p>
+  </button>
+  <button class="panel" onclick="openScreen('Career','🏆','Build your football legacy.')">
+   <div class="symbol">🏆</div><h3>CAREER ›</h3><p>Build your legend</p>
+  </button>
+  <div class="panel ad">
+   <div class="adtag">AD</div>
+   <div class="shoe">👟</div>
+   <div><h3>FOOTBALL</h3><p>Gear up to play</p></div>
+   <button onclick="openScreen('Shop','👟','Explore the gear shop.')">SHOP NOW ›</button>
   </div>
 
-  <button class="menuButton" onclick="beginMatch()">
-    START MATCH ⚽
+  <button class="panel" onclick="openScreen('Daily Quest','☑️','Complete challenges to earn rewards.')">
+   <div class="symbol">☑️</div><h3>DAILY QUEST ›</h3><p>Complete tasks</p>
+  </button>
+  <button class="panel" onclick="openScreen('Team','🛡️','Choose your national team.')">
+   <div class="symbol">🇵🇹</div><h3>TEAM ›</h3><p id="teamLabel">Portugal selected</p>
   </button>
 
-  <button class="menuButton secondaryButton" onclick="backHome()">
-    BACK TO MAIN MENU
+  <button class="panel wide" onclick="openScreen('Jersey Shop','👕','Choose your team kit.')">
+   <h3>JERSEY SHOP ›</h3><p>New kits and designs</p>
+   <div class="jerseys"><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span><span class="shirt">👕</span></div>
   </button>
-</div>
+ </div>
 
-<div id="matchScreen">
-  <div class="matchHeader">
-    <div>RALLY FC</div>
-    <div class="score" id="score">0 - 0</div>
-    <div>RIVALS</div>
-  </div>
+ <div class="playarea">
+  <button class="play" onclick="openScreen('Select Match','⚽','Choose your team and start your first match.')">⚽ PLAY <span>›</span></button>
+ </div>
 
-  <div class="matchPitch" id="pitch">
-    <div class="player" id="player" style="left:48%;top:72%;">7</div>
-    <div class="player opponent" style="left:48%;top:22%;">9</div>
-    <div class="player opponent" style="left:20%;top:40%;">4</div>
-    <div class="player opponent" style="left:72%;top:40%;">5</div>
-    <div id="ball"></div>
-  </div>
+ <div class="reward">
+  <div class="coins">🪙</div>
+  <div><strong>WATCH AD • GET 20 COINS</strong><small>Optional reward • Watch only if you choose</small></div>
+  <button onclick="watchAd()">▶ WATCH AD</button>
+ </div>
+</main>
 
-  <p class="smallNote">Move your player and try to score!</p>
+<nav id="nav">
+ <button class="active" onclick="goHome(this)"><b>⌂</b>HOME</button>
+ <button onclick="openScreen('Players','👤','Build your squad.')"><b>👤</b>PLAYERS</button>
+ <button onclick="openScreen('Jersey Shop','👕','Choose your kit.')"><b>👕</b>JERSEYS</button>
+ <button onclick="openScreen('Store','🛒','Your game store.')"><b>🛒</b>STORE</button>
+ <button onclick="openScreen('Tournaments','🏆','Compete for the trophy.')"><b>🏆</b>TOURNAMENTS</button>
+</nav>
+<footer>RALLY FOOTBALL • MORE THAN A GAME</footer>
 
-  <div class="controls">
-    <button class="controlButton" onclick="movePlayer(0,-5)">▲</button>
-  </div>
-
-  <div class="controls">
-    <button class="controlButton" onclick="movePlayer(-5,0)">◀</button>
-    <button class="controlButton" onclick="movePlayer(0,5)">▼</button>
-    <button class="controlButton" onclick="movePlayer(5,0)">▶</button>
-    <button class="controlButton shootButton" onclick="shootBall()">SHOOT</button>
-  </div>
-
-  <button class="menuButton secondaryButton" onclick="backToClub()">
-    EXIT MATCH
-  </button>
+<section id="screen">
+ <button class="back" onclick="goHome()">← BACK</button>
+ <div class="screenTitle" id="screenTitle">RALLY FOOTBALL</div>
+ <div id="screenBody"></div>
+</section>
 </div>
 
 <script>
-function startGame() {
-  document.getElementById("home").style.display = "none";
-  document.getElementById("clubScreen").style.display = "block";
+const screen=document.getElementById('screen');
+const body=document.getElementById('screenBody');
+let team='Portugal';
+let coins=140000;
+let selected='Portugal';
+let matchStarted=false;
+
+function openScreen(title,emoji,description){
+ document.getElementById('screenTitle').textContent=emoji+' '+title.toUpperCase();
+ if(title==='Team'||title==='Select Match'){
+  body.innerHTML=`
+   <p>CHOOSE YOUR NATIONAL TEAM</p>
+   <div class="options">
+    ${[['🇵🇹','Portugal'],['🇧🇷','Brazil'],['🇫🇷','France'],['🇦🇷','Argentina'],['🏴','England'],['🇩🇪','Germany']].map(t=>`
+    <button class="option ${selected===t[1]?'selected':''}" onclick="chooseTeam('${t[1]}',this)">
+    <span>${t[0]}</span>${t[1]}</button>`).join('')}
+   </div>
+   <button class="confirm" onclick="startMatch()">⚽ START MATCH</button>`;
+ }else if(title==='Players'){
+  body.innerHTML=`<p>${description}</p><div class="options">
+  <div class="option"><span>🥅</span>GOALKEEPER</div>
+  <div class="option"><span>🛡️</span>DEFENDERS</div>
+  <div class="option"><span>⚡</span>MIDFIELDERS</div>
+  <div class="option"><span>🎯</span>FORWARDS</div></div>`;
+ }else if(title==='Settings'){
+  body.innerHTML=`<div class="option"><span>🔊</span>Sound effects<br><br><button class="back" onclick="this.textContent=this.textContent==='ON'?'OFF':'ON'">ON</button></div>
+  <p>RALLY FOOTBALL DEMO</p>`;
+ }else if(title==='Store'||title==='Shop'||title==='Jersey Shop'){
+  body.innerHTML=`<p>${description}</p><div class="options">
+  <div class="option"><span>👕</span>Home Kit<br>🪙 500</div>
+  <div class="option"><span>👟</span>Boots<br>🪙 800</div>
+  <div class="option"><span>🧤</span>Goalkeeper Kit<br>🪙 600</div>
+  <div class="option"><span>⭐</span>Star Pack<br>🪙 1000</div></div>
+  <p>Shop items are demo items in this version.</p>`;
+ }else{
+  body.innerHTML=`<div class="option"><span>${emoji}</span>${description}<br><br><small>COMING SOON</small></div>
+  <button class="confirm" onclick="openScreen('Select Match','⚽','Choose your team')">PLAY A MATCH</button>`;
+ }
+ document.getElementById('home').style.display='none';
+ document.getElementById('nav').style.display='none';
+ document.querySelector('footer').style.display='none';
+ screen.style.display='block';
 }
 
-function backHome() {
-  document.getElementById("clubScreen").style.display = "none";
-  document.getElementById("home").style.display = "flex";
+function chooseTeam(name,button){
+ selected=name;
+ document.querySelectorAll('.option').forEach(el=>el.classList.remove('selected'));
+ button.classList.add('selected');
 }
-
-function beginMatch() {
-  document.getElementById("clubScreen").style.display = "none";
-  document.getElementById("matchScreen").style.display = "block";
+function goHome(button){
+ screen.style.display='none';
+ document.getElementById('home').style.display='block';
+ document.getElementById('nav').style.display='flex';
+ document.querySelector('footer').style.display='block';
+ if(button){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  button.classList.add('active');
+ }
 }
-
-function backToClub() {
-  document.getElementById("matchScreen").style.display = "none";
-  document.getElementById("clubScreen").style.display = "block";
+function startMatch(){
+ team=selected;
+ document.getElementById('teamLabel').textContent=team+' selected';
+ document.getElementById('screenTitle').textContent='⚽ '+team.toUpperCase()+' MATCH';
+ body.innerHTML=`
+ <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:13px">
+ <span>${team}</span><span id="score">0 - 0</span><span>RIVAL FC</span></div>
+ <div style="text-align:center;margin:15px">DEMO MATCH • <span id="minute">0</span>'</div>
+ <div class="pitch">
+  <div class="circle"></div>
+  <div class="matchPlayers">
+   <div class="rowPlayers"><span>🧍</span><span>🧍</span><span>🧍</span><span>🧍</span></div>
+   <div class="rowPlayers"><span>🔴</span><span>🔴</span><span>🔴</span><span>🔴</span></div>
+  </div>
+  <div class="ball" id="ball">⚽</div>
+ </div>
+ <p style="text-align:center">DEMO CONTROLS — tap to play</p>
+ <div class="matchControls">
+  <button onclick="kick('PASS')">PASS</button>
+  <button onclick="kick('SHOOT')">SHOOT ⚽</button>
+  <button onclick="kick('SPRINT')">SPRINT</button>
+ </div>
+ <button class="confirm" onclick="goHome()">QUIT MATCH</button>`;
+ matchStarted=true;
 }
-
-let playerX = 48;
-let playerY = 72;
-let ballX = 50;
-let ballY = 50;
-let goals = 0;
-
-function movePlayer(dx, dy) {
-  playerX = Math.max(3, Math.min(93, playerX + dx));
-  playerY = Math.max(3, Math.min(90, playerY + dy));
-
-  const player = document.getElementById("player");
-  player.style.left = playerX + "%";
-  player.style.top = playerY + "%";
+function kick(action){
+ let ball=document.getElementById('ball');
+ let minute=document.getElementById('minute');
+ let score=document.getElementById('score');
+ if(!ball||!minute)return;
+ minute.textContent=Math.min(90,Number(minute.textContent)+5);
+ ball.style.left=(15+Math.random()*70)+'%';
+ ball.style.top=(15+Math.random()*70)+'%';
+ if(action==='SHOOT'&&Math.random()>.55){
+  let values=score.textContent.split(' - ').map(Number);
+  values[0]++;
+  score.textContent=values.join(' - ');
+  alert('GOAL! ⚽ Nice shot!');
+ }else if(action==='SHOOT'){
+  alert('Shot saved! Try again, bro! 🧤');
+ }else if(action==='PASS'){
+  alert('Pass completed! Keep moving!');
+ }else{
+  alert('Sprint! Run into space! ⚡');
+ }
+ if(Number(minute.textContent)>=90)alert('Full time! This is an early gameplay demo.');
 }
-
-function shootBall() {
-  const ball = document.getElementById("ball");
-
-  const distanceX = 50 - playerX;
-  const distanceY = 8 - playerY;
-
-  ballX = Math.max(3, Math.min(97, playerX + distanceX * 0.7));
-  ballY = Math.max(3, Math.min(97, playerY + distanceY * 0.7));
-
-  ball.style.left = ballX + "%";
-  ball.style.top = ballY + "%";
-
-  if (ballY < 15 && Math.abs(ballX - 50) < 15) {
-    goals++;
-    document.getElementById("score").textContent = goals + " - 0";
-
-    ballX = 50;
-    ballY = 50;
-    ball.style.left = "50%";
-    ball.style.top = "50%";
-
-    playerX = 48;
-    playerY = 72;
-    document.getElementById("player").style.left = playerX + "%";
-    document.getElementById("player").style.top = playerY + "%";
-
-    alert("GOAL! ⚽ Great shot!");
-  }
+function watchAd(){
+ alert('Optional ad reward preview. A real ad network is not connected yet, so no ad will play and no coins will be added.');
 }
 </script>
-
 </body>
-</html>
+  </html>
+  
